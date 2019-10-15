@@ -1,11 +1,12 @@
 <?php
-require("connection.php");
+require ('connect.php');
 try{
     $connexion = connect_bd();
     $recherche = "SELECT * FROM FILMS";
-    $result = $connexion->query($recherche);
-        echo $result;
-
+    $films = $connexion->query($recherche);
+    while ($film = $films->fetchObject()) {
+        echo $film->Titre."\n";
+    }
     $connexion = null;
 }
 catch (PDOException $e) {
